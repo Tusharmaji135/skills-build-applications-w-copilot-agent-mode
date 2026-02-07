@@ -3,11 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 function Teams() {
   const [teams, setTeams] = useState([]);
   const [filter, setFilter] = useState("");
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  const apiBase = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev/api`
-    : "http://localhost:8000/api";
-  const endpoint = `${apiBase}/teams/`;
+  const endpoint = "https://YOUR_CODESPACE_NAME-8000.app.github.dev/api/teams/";
 
   const fetchTeams = useCallback(async () => {
     console.log("Teams endpoint:", endpoint);
