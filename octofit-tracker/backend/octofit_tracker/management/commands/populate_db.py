@@ -67,6 +67,26 @@ class Command(BaseCommand):
             defaults={"calories_burned": 340, "notes": "Vibranium workout."},
         )
 
+        # Additional activities
+        Activity.objects.get_or_create(
+            user=users[0],
+            activity_type="Cardio",
+            duration_minutes=25,
+            defaults={"calories_burned": 220, "notes": "Morning rooftop run."},
+        )
+        Activity.objects.get_or_create(
+            user=users[1],
+            activity_type="Yoga",
+            duration_minutes=30,
+            defaults={"calories_burned": 150, "notes": "Flexibility training."},
+        )
+        Activity.objects.get_or_create(
+            user=users[2],
+            activity_type="HIIT",
+            duration_minutes=20,
+            defaults={"calories_burned": 280, "notes": "High intensity intervals."},
+        )
+
         LeaderboardEntry.objects.get_or_create(
             user=users[0],
             defaults={"points": 140, "rank": 1, "period": "weekly"},
