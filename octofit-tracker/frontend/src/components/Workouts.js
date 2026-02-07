@@ -3,11 +3,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 function Workouts() {
   const [workouts, setWorkouts] = useState([]);
   const [filter, setFilter] = useState("");
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  const apiBase = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev/api`
-    : "http://localhost:8000/api";
-  const endpoint = `${apiBase}/workouts/`;
+  const endpoint =
+    "https://YOUR_CODESPACE_NAME-8000.app.github.dev/api/workouts/";
 
   const fetchWorkouts = useCallback(async () => {
     console.log("Workouts endpoint:", endpoint);

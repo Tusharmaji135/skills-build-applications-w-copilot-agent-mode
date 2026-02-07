@@ -3,11 +3,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 function Activities() {
   const [activities, setActivities] = useState([]);
   const [filter, setFilter] = useState("");
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  const apiBase = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev/api`
-    : "http://localhost:8000/api";
-  const endpoint = `${apiBase}/activities/`;
+  const endpoint =
+    "https://YOUR_CODESPACE_NAME-8000.app.github.dev/api/activities/";
 
   const fetchActivities = useCallback(async () => {
     console.log("Activities endpoint:", endpoint);
