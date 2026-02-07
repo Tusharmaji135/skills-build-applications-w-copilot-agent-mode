@@ -10,84 +10,89 @@ from octofit_tracker.models import (
 
 
 class Command(BaseCommand):
-    help = "Populate the database with initial Octofit Tracker data."
+    help = "Populate the octofit_db database with test data"
 
     def handle(self, *args, **options):
         users = [
             UserProfile.objects.get_or_create(
-                username="octo_amy",
+                username="spider_man",
                 defaults={
-                    "email": "amy@example.com",
-                    "display_name": "Amy Rider",
+                    "email": "spiderman@marvel.com",
+                    "display_name": "Spider-Man",
                 },
             )[0],
             UserProfile.objects.get_or_create(
-                username="octo_max",
+                username="wonder_woman",
                 defaults={
-                    "email": "max@example.com",
-                    "display_name": "Max Sprint",
+                    "email": "wonderwoman@dc.com",
+                    "display_name": "Wonder Woman",
                 },
             )[0],
             UserProfile.objects.get_or_create(
-                username="octo_lee",
+                username="black_panther",
                 defaults={
-                    "email": "lee@example.com",
-                    "display_name": "Lee Pace",
+                    "email": "blackpanther@marvel.com",
+                    "display_name": "Black Panther",
                 },
             )[0],
         ]
 
-        team, _ = Team.objects.get_or_create(
-            name="OctoFit Crew",
-            defaults={"description": "Community training team."},
+        marvel_team, _ = Team.objects.get_or_create(
+            name="Team Marvel",
+            defaults={"description": "Marvel super heroes training squad."},
         )
-        team.members.set(users)
+        dc_team, _ = Team.objects.get_or_create(
+            name="Team DC",
+            defaults={"description": "DC super heroes training squad."},
+        )
+        marvel_team.members.set([users[0], users[2]])
+        dc_team.members.set([users[1]])
 
         Activity.objects.get_or_create(
             user=users[0],
-            activity_type="Run",
-            duration_minutes=35,
-            defaults={"calories_burned": 320, "notes": "Morning tempo run."},
+            activity_type="Web Swinging",
+            duration_minutes=30,
+            defaults={"calories_burned": 280, "notes": "City patrol."},
         )
         Activity.objects.get_or_create(
             user=users[1],
-            activity_type="Bike",
-            duration_minutes=50,
-            defaults={"calories_burned": 420, "notes": "Intervals."},
+            activity_type="Combat Training",
+            duration_minutes=45,
+            defaults={"calories_burned": 360, "notes": "Sparring drills."},
         )
         Activity.objects.get_or_create(
             user=users[2],
-            activity_type="Yoga",
+            activity_type="Strength",
             duration_minutes=40,
-            defaults={"calories_burned": 160, "notes": "Recovery flow."},
+            defaults={"calories_burned": 340, "notes": "Vibranium workout."},
         )
 
         LeaderboardEntry.objects.get_or_create(
             user=users[0],
-            defaults={"points": 120, "rank": 1, "period": "weekly"},
+            defaults={"points": 140, "rank": 1, "period": "weekly"},
         )
         LeaderboardEntry.objects.get_or_create(
             user=users[1],
-            defaults={"points": 95, "rank": 2, "period": "weekly"},
+            defaults={"points": 120, "rank": 2, "period": "weekly"},
         )
         LeaderboardEntry.objects.get_or_create(
             user=users[2],
-            defaults={"points": 80, "rank": 3, "period": "weekly"},
+            defaults={"points": 110, "rank": 3, "period": "weekly"},
         )
 
         Workout.objects.get_or_create(
-            title="Starter Strength",
+            title="Marvel Mobility",
             defaults={
-                "description": "Full body circuit with low impact moves.",
+                "description": "Agility and balance session for hero landings.",
                 "difficulty": "beginner",
                 "duration_minutes": 25,
                 "suggested_for": users[0],
             },
         )
         Workout.objects.get_or_create(
-            title="Tempo Builder",
+            title="Amazon Warrior",
             defaults={
-                "description": "Intervals to build aerobic endurance.",
+                "description": "Strength and endurance circuit.",
                 "difficulty": "intermediate",
                 "duration_minutes": 35,
                 "suggested_for": users[1],
