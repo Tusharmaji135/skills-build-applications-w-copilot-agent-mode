@@ -1,0 +1,12 @@
+from rest_framework.test import APITestCase
+
+
+class ApiRootTests(APITestCase):
+    def test_api_root_returns_links(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("users", response.data)
+        self.assertIn("teams", response.data)
+        self.assertIn("activities", response.data)
+        self.assertIn("leaderboard", response.data)
+        self.assertIn("workouts", response.data)
