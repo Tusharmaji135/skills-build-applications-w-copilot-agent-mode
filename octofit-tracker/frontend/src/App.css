@@ -1,0 +1,32 @@
+.App {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%);
+  color: #1f2a37;
+}
+
+.app-hero {
+  padding: 1.5rem 0 0;
+}
+
+.app-main {
+  padding: 1.5rem 0 2.5rem;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.table-responsive {
+  border-radius: 0.75rem;
+}
+
+.table pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: "Courier New", Courier, monospace;
+}
