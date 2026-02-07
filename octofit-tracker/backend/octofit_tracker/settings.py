@@ -7,9 +7,11 @@ BASE_DIR = Path(__file__).resolve().parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-secret-key")
 DEBUG = os.environ.get("DJANGO_DEBUG", "True") == "True"
 
+CODESPACE_NAME = os.environ.get("CODESPACE_NAME")
+
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-if os.environ.get("CODESPACE_NAME"):
-    ALLOWED_HOSTS.append(f"{os.environ.get('CODESPACE_NAME')}-8000.app.github.dev")
+if CODESPACE_NAME:
+    ALLOWED_HOSTS.append(f"{CODESPACE_NAME}-8000.app.github.dev")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
