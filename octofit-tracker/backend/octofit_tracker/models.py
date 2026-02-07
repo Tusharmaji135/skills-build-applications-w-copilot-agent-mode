@@ -1,9 +1,12 @@
+from django.core.validators import MinLengthValidator
 from djongo import models
 
 
 class UserProfile(models.Model):
     _id = models.ObjectIdField(primary_key=True, editable=False)
-    username = models.CharField(max_length=150, unique=True)
+    username = models.CharField(
+        max_length=150, unique=True, validators=[MinLengthValidator(3)]
+    )
     email = models.EmailField(unique=True)
     display_name = models.CharField(max_length=150, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
